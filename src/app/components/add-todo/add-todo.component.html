@@ -1,0 +1,12 @@
+<form class="add-form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Add task to do"
+      [(ngModel)]="task">
+  </div>
+  <input class="btn btn-block" type="submit" value="Save">
+</form>
