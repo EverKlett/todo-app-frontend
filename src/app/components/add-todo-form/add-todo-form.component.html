@@ -1,0 +1,6 @@
+<app-button
+  [color]="(isActive) ? ('red') : ('green')"
+  [text]="(isActive) ? ('Discard') : ('Add')"
+  (btnClick)="onToggleButton()"
+></app-button>
+<app-add-todo *ngIf="isActive" (onAddTodo)="onAddTodo($event)"></app-add-todo>

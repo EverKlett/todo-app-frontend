@@ -10,6 +10,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { TodosComponent } from './components/todos/todos.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component';
+import { EventService } from './services/event.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
     TodosComponent,
     TodoItemComponent,
     AddTodoComponent,
+    AddTodoFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
