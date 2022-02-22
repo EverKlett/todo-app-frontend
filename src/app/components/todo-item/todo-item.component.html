@@ -1,7 +1,7 @@
 <div
   class="todo"
   [ngClass]="{ isDone: todo.isDone, isNotDone: !todo.isDone }"
-  (dblclick)="onToggle(todo)"
+  (dblclick)="onToggle()"
 >
   <h3>
     {{ todo.task }}
@@ -11,5 +11,5 @@
       (click)="onDelete(todo)">
     </fa-icon>
   </h3>
-  <p *ngIf=" updatedAt ">{{ updatedAt.toLocaleString('pt-BR', { timeZone: 'UTC' }) }}</p>
+  <p *ngIf=" updatedAt ">{{ updatedAt.toLocaleString() }}</p>
 </div>

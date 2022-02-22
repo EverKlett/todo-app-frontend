@@ -23,6 +23,11 @@ export class TodoService {
     return this.http.get<Todo[]>(this.apiUrl);
   }
 
+  getTodo(todo: Todo): Observable<Todo[]> {
+    const url: string = `${this.apiUrl}/${todo.id}`;
+    return this.http.get<Todo[]>(url);
+  }
+
   deleteTodo(todo: Todo): Observable<Todo> {
     const url: string = `${this.apiUrl}/${todo.id}`;
     return this.http.delete<Todo>(url);
@@ -37,5 +42,9 @@ export class TodoService {
       "isDone": Number(todo.isDone)
       },
       httpOptions);
+  }
+
+  createTodo(todo: Todo) {
+    return this.http.post<Todo>(this.apiUrl, todo);
   }
 }

@@ -1,6 +1,6 @@
 <app-add-todo (onAddTodo)="onAddTodo($event)"></app-add-todo>
 <app-todo-item
-  *ngFor="let todo of todos"
+  *ngFor="let todo of todos | async"
   [todo]="todo"
   (onDeleteTodo)="onDeleteTodo(todo)"
   (onToggleTodo)="onToggleTodo(todo)"

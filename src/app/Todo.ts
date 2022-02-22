@@ -1,7 +1,7 @@
 export interface Todo {
   id?: string;
   task: string;
-  isDone: boolean;
+  isDone: number;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;
@@ -11,7 +11,7 @@ export function createDefTodo(): Todo {
   const todo: Todo = {
     "id": "",
     "task": "",
-    "isDone": false,
+    "isDone": 0,
     "createdAt": "",
     "updatedAt": "",
     "deletedAt": ""

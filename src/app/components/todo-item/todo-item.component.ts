@@ -36,8 +36,7 @@ export class TodoItemComponent implements OnInit {
     this.onDeleteTodo.emit(todo);
   }
 
-  onToggle(todo: Todo) {
-    this.onToggleTodo.emit(todo);
-    //window.location.reload();
+  onToggle() {
+    this.onToggleTodo.emit(this.todo);
   }
 }
