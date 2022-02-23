@@ -2,14 +2,27 @@
   class="todo"
   [ngClass]="{ isDone: todo.isDone, isNotDone: !todo.isDone }"
   (dblclick)="onToggle()"
+  [ngStyle]="{
+    'justify-content': 'space-between',
+    display: 'flex'
+  }"
 >
-  <h3>
-    {{ todo.task }}
-    <fa-icon
-      [icon]="faTimes"
-      [ngStyle]="{ color: 'red' }"
-      (click)="onDelete(todo)">
-    </fa-icon>
-  </h3>
-  <p *ngIf=" updatedAt ">{{ updatedAt.toLocaleString() }}</p>
+  <div [ngStyle]="{ display: 'inline-block'}">
+    <h3>
+      {{ todo.task }}
+    </h3>
+    <p
+      *ngIf=" updatedAt "
+    >{{ updatedAt.toLocaleString() }}</p>
+  </div>
+  <fa-icon
+    [icon]="faTimes"
+    [ngStyle]="{
+      color: 'red',
+      display: 'inline-block',
+      padding: '15px 15px'
+    }"
+    size="2x"
+    (click)="onDelete(todo)">
+  </fa-icon>
 </div>
