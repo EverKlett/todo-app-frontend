@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,11 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component';
 import { EventService } from './services/event.service';
+
+import ptBr from "@angular/common/locales/pt";
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -28,8 +34,15 @@ import { EventService } from './services/event.service';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
-  providers: [EventService],
+  providers: [
+    EventService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR',
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 :host {
   display: block;
+  padding: 5px;
 }
 .add-form {
   margin-bottom: 40px;

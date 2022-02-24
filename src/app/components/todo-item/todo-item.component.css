@@ -1,3 +1,11 @@
+:host {
+  display: block;
+}
+
+.fade {
+  opacity: 1;
+}
+
 .todo {
   background: #f4f4f4;
   margin: 5px;
@@ -17,4 +25,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+div.todo-outer-div {
+  justify-content: space-between;
+  display: flex;
+}
+
+div.todo-inner-div {
+  display: inline-block;
+}
+
+.icon {
+  display: inline-block;
+  padding: 15px 15px;
+}
+
+.icon.faTimes {
+  color: red;
 }

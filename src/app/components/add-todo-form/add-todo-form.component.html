@@ -1,6 +1,12 @@
 <app-button
-  [color]="(isActive) ? ('red') : ('green')"
-  [text]="(isActive) ? ('Discard') : ('Add')"
-  (btnClick)="onToggleButton()"
-></app-button>
-<app-add-todo *ngIf="isActive" (onAddTodo)="onAddTodo($event)"></app-add-todo>
+    [color]="(state === 'visible') ? ('red') : ('green')"
+    [text]="(state === 'visible') ? ('Discard') : ('Add')"
+    (btnClick)="onToggleButton()"
+  ></app-button>
+<div
+  class="slide"
+  [@state]="state"
+  (@state.done)="changeState($event)"
+>
+  <app-add-todo *ngIf="isActive" (onAddTodo)="onAddTodo($event)"></app-add-todo>
+</div>

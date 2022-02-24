@@ -1,28 +1,28 @@
 <div
-  class="todo"
+  *ngIf="show"
+
+  class="fade todo todo-outer-div"
   [ngClass]="{ isDone: todo.isDone, isNotDone: !todo.isDone }"
+
+  [@state]="state"
+  (@state.done)="animationDone($event)"
+
   (dblclick)="onToggle()"
-  [ngStyle]="{
-    'justify-content': 'space-between',
-    display: 'flex'
-  }"
 >
-  <div [ngStyle]="{ display: 'inline-block'}">
+  <div class="todo-inner-div">
     <h3>
       {{ todo.task }}
     </h3>
     <p
       *ngIf=" updatedAt "
-    >{{ updatedAt.toLocaleString() }}</p>
+    >{{ updatedAt | date:'medium' }}</p>
   </div>
   <fa-icon
+    class="icon faTimes"
+
     [icon]="faTimes"
-    [ngStyle]="{
-      color: 'red',
-      display: 'inline-block',
-      padding: '15px 15px'
-    }"
     size="2x"
+
     (click)="onDelete(todo)">
   </fa-icon>
 </div>
