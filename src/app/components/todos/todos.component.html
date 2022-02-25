@@ -1,7 +1,6 @@
 <app-todo-item
-  *ngFor="let todo of todos | async"
+  *ngFor="let todo of todos | async; trackBy:trackByFn"
   [todo]="todo"
-  show
   [@inOutAnim]
   (onDeleteTodo)="onDeleteTodo(todo)"
   (onToggleTodo)="onToggleTodo(todo)"

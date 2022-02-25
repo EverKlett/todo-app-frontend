@@ -17,10 +17,7 @@ export class RaibowTextDirective implements OnInit {
 
     let spans: HTMLSpanElement[] = this.text.split("").map(char => {
       const span: HTMLSpanElement = this.renderer.createElement("span");
-      this.renderer.setStyle(span, 'width', '12px');
-      this.renderer.setStyle(span, 'height', 'auto')
 
-      console.log(char);
       if (char !== ' ') {
         this.renderer.setStyle(span, 'color', this.colours[arrayIndex]);
         this.renderer.setStyle(span, 'text-shadow', '0px 0px 3px gray');

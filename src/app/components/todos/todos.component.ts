@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Todo } from 'src/app/Todo';
-import { TodoService } from 'src/app/services/todo.service';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
-import { animate, keyframes, style, transition, trigger } from '@angular/animations';
+import { TodoService } from 'src/app/services/todo.service';
+import { Todo } from 'src/app/Todo';
 
 @Component({
   selector: 'app-todos',
@@ -21,12 +21,16 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
       ]))]),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosComponent implements OnInit {
 
   todos: BehaviorSubject<Todo[]>;
 
-  constructor(private todoService: TodoService, private eventService: EventService) {
+  constructor(
+    private todoService: TodoService,
+    private eventService: EventService,
+    private changeDetector: ChangeDetectorRef) {
     let list: Todo[] = [];
     this.todos = new BehaviorSubject<Todo[]>(list);
 
@@ -40,7 +44,11 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)));
-  }
+  };
+
+  trackByFn(index: number, item: Todo): string {
+    return JSON.stringify(item);
+  };
 
   //Functionalities
   onDeleteTodo(todo: Todo) {
@@ -50,7 +58,7 @@ export class TodosComponent implements OnInit {
         //this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)) )
         this.todos.getValue().splice(this.todos.getValue().indexOf(todo), 1);
       });
-  }
+  };
 
   onToggleTodo(todo: Todo) {
     todo.isDone = (todo.isDone == 1) ? 0 : 1;
@@ -58,17 +66,8 @@ export class TodosComponent implements OnInit {
     this.todoService
       .updateTodo(todo)
       .subscribe((todoUpd) => {
-        let array: Todo[] = this.todos
-          .getValue()
-          .map<Todo>((t) => {
-            if (t.id === todoUpd.id) {
-              t = todoUpd;
-            };
-            return t;
-          });
-
-        this.todos.next(array);
+        Object.assign(this.todos.getValue().find((t) => (t == todo)), todoUpd);
       }
     );
-  }
-}
+  ;}
+};
