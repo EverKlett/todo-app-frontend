@@ -3,11 +3,24 @@ import { Todo } from 'src/app/Todo';
 import { TodoService } from 'src/app/services/todo.service';
 import { BehaviorSubject } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css']
+  styleUrls: ['./todos.component.css'],
+  animations: [
+    trigger('inOutAnim',[
+      transition(':enter', [animate('500ms', keyframes([
+          style({ opacity: 0 }),
+          style({ opacity: 1 }),
+      ]))]),
+      transition(':leave', [animate('500ms', keyframes([
+          style({ opacity: 1 }),
+          style({ opacity: 0 }),
+      ]))]),
+    ]),
+  ],
 })
 export class TodosComponent implements OnInit {
 
@@ -19,7 +32,8 @@ export class TodosComponent implements OnInit {
 
     this.eventService.event.subscribe((event) => {
       if (event.name === "addedTodo") {
-        this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)));
+        //this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)));
+        this.todos.getValue().push(event.todo);
       }
     })
   }
@@ -32,9 +46,10 @@ export class TodosComponent implements OnInit {
   onDeleteTodo(todo: Todo) {
     this.todoService
       .deleteTodo(todo)
-      .subscribe(() => (
-        this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)) )
-      ));
+      .subscribe(() => {
+        //this.todoService.getTodos().subscribe((todos) => (this.todos.next(todos)) )
+        this.todos.getValue().splice(this.todos.getValue().indexOf(todo), 1);
+      });
   }
 
   onToggleTodo(todo: Todo) {

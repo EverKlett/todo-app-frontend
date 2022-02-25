@@ -16,6 +16,7 @@ import { EventService } from './services/event.service';
 
 import ptBr from "@angular/common/locales/pt";
 import { registerLocaleData } from '@angular/common';
+import { RaibowTextDirective } from './directives/raibow-text.directive';
 
 registerLocaleData(ptBr);
 
@@ -28,6 +29,7 @@ registerLocaleData(ptBr);
     TodoItemComponent,
     AddTodoComponent,
     AddTodoFormComponent,
+    RaibowTextDirective,
   ],
   imports: [
     BrowserModule,

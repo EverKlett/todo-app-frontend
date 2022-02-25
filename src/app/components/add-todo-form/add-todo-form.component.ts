@@ -63,7 +63,7 @@ export class AddTodoFormComponent implements OnInit {
   onAddTodo(todo: Todo) {
     this.todoService.createTodo(todo).subscribe((t) => {
       this.onTodoAdded.emit(t);
-      this.eventService.emitEvent({ name: "addedTodo" });
+      this.eventService.emitEvent({ name: "addedTodo", todo: t });
     });
     this.state = 'hidden';
   }

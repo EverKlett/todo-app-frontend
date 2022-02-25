@@ -2,15 +2,17 @@
   display: block;
 }
 
-.fade {
-  opacity: 1;
-}
-
 .todo {
   background: #f4f4f4;
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+}
+
+.todo:hover {
+  background: #f0f0f0;
+  transform: scale(1.02);
+  transition: 100ms ease-in;
 }
 
 .todo.isDone {
@@ -24,7 +26,6 @@
 .todo h3 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 div.todo-outer-div {

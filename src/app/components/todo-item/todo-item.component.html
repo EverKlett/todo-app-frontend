@@ -1,28 +1,20 @@
 <div
-  *ngIf="show"
-
-  class="fade todo todo-outer-div"
+  class="todo todo-outer-div"
   [ngClass]="{ isDone: todo.isDone, isNotDone: !todo.isDone }"
-
-  [@state]="state"
-  (@state.done)="animationDone($event)"
 
   (dblclick)="onToggle()"
 >
   <div class="todo-inner-div">
-    <h3>
-      {{ todo.task }}
+    <h3
+      appRaibowText={{todo.task}}
+    >
     </h3>
     <p
-      *ngIf=" updatedAt "
-    >{{ updatedAt | date:'medium' }}</p>
+      appRaibowText="{{ updatedAt | date:'medium' }}"
+    ></p>
+
   </div>
-  <fa-icon
-    class="icon faTimes"
-
-    [icon]="faTimes"
-    size="2x"
-
-    (click)="onDelete(todo)">
+  <fa-icon class="icon faTimes" [icon]="faTimes" size="2x"
+    (click)="onDelete()">
   </fa-icon>
 </div>

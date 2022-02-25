@@ -1,7 +1,8 @@
 <app-todo-item
   *ngFor="let todo of todos | async"
   [todo]="todo"
-  [show]=true
+  show
+  [@inOutAnim]
   (onDeleteTodo)="onDeleteTodo(todo)"
   (onToggleTodo)="onToggleTodo(todo)"
 ></app-todo-item>
